@@ -1,10 +1,11 @@
-import React from 'react'
 import React, { useState, useEffect } from "react";
-
+import { Search, Menu, X, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);//스크롤 하는지 usestate
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);//navbar 메뉴
 
   useEffect(() => {
     const handleScroll = () => {
