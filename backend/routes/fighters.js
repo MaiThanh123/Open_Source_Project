@@ -5,4 +5,4 @@ const { getFighterByName, getFightersByWeightClass } = require('../controllers/f
 router.get('/:name', getFighterByName);
 router.get('/weight/:weight_class', getFightersByWeightClass);
 
-module.exports = router;
+module.exports = fighterRoutes;
