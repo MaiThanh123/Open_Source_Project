@@ -12,7 +12,6 @@ CREATE TABLE fighter_stats (
     reach_cm FLOAT,
     country VARCHAR(100),
     stance VARCHAR(50),
-    debut_date DATE,
     image_url VARCHAR(255),
     entry_song_url VARCHAR(255),
 
@@ -20,18 +19,25 @@ CREATE TABLE fighter_stats (
     losses INT,
     draws INT,
 
-    sig_strike_acc FLOAT,
+    strike_acc FLOAT,
     takedown_acc FLOAT,
-    sig_strike_per_min FLOAT,
+    strike_per_min FLOAT,
     takedown_avg_per_fight FLOAT,
     sig_strike_def FLOAT,
     takedown_def FLOAT,
     avg_fight_time_min FLOAT,
 
+    strike INT GENERATED ALWAYS AS (strike_acc*100) VIRTUAL,
+    cardio INT GENERATED ALWAYS AS (100*strike_per_min/7) VIRTUAL,
+    grappling INT GENERATED ALWAYS AS (takedown_acc*100) VIRTUAL,
+    power INT GENERATED ALWAYS AS (a + b) VIRTUAL,
+    speed INT GENERATED ALWAYS AS (a + b) VIRTUAL,
+    defense INT GENERATED ALWAYS AS (a + b) VIRTUAL,
+
     position_stand FLOAT,
     position_clinch FLOAT,
     position_ground FLOAT,
-
+    
     target_head FLOAT,
     target_body FLOAT,
     target_leg FLOAT,
