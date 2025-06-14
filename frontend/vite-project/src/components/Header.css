@@ -1,43 +1,129 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.header {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Anton', Tahoma, Haettenschweiler, 'Arial Narrow Bold';
+  --primary-color: #d20a0a;
 }
 
+@media (min-width: 992px) {
+  .header {
+    width: 80%;
+  }
+}
 
-/* Header */
-.header {
+@media (min-width: 1200px) {
+  .header {
+    width: 60%;
+  }
+}
+
+.header__navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  padding: 16px 32px;
-  border-bottom: 1px solid white;
+  width: 100%;
 }
 
-.ufc-logo {
-  padding-left: 100px;
-  height: 22px;
+.header__logo {
+  fill: black;
+  width: 80px;
+  cursor: pointer;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  position: relative;
 }
 
-.header-right {
+.header__logo-wrapper {
+  position: relative;
   display: flex;
-  padding-right: 80px;
-  gap: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  order: 2;
 }
 
-.nav-item {
-  color: white;
+.header__logo-wrapper::after {
+  content: '';
+  width: 50%;
+  height: 3px;
+  background-color: var(--primary-color);
+
+  transition: all;
+  transition-duration: 400ms;
+
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header__logo-wrapper:hover::after {
+  width: 80%;
+}
+
+.header__logo:hover {
+  fill: var(--primary-color);
+}
+
+.header__group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__group--left {
+  order: 1;
+}
+
+.header__group--right {
+  order: 3;
+}
+
+.header__item {
   text-decoration: none;
-  font-weight:bolder;
-  font-size: 18px;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 400;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  position: relative;
 }
 
-.nav-item:hover {
-  color: #ccc;
+.header__item::after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  background-color: var(--primary-color);
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all;
+  transition-duration: 400ms;
 }
 
-.main-content {
-  padding: 24px;
+.header__item:hover {
+  color: var(--primary-color);
+}
+
+.header__item:hover::after {
+  width: 120%;
+}
+
+.header__group:hover ~ .header__logo-wrapper::after {
+  width: 0;
+  transition: width 400ms ease 100ms;
 }

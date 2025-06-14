@@ -1,8 +1,8 @@
 
-html,
-.homepage-container {
-  background-color: #000;
+.toptier-container {
+  margin-top: 20px;
   color: #fff;
+  background-color: black;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -14,7 +14,7 @@ html,
 .ufc-banner {
   display: flex;
   justify-content: center;
-  padding: 180px 0;
+  padding: 150px 0;
 }
 
 .ufc-banner img {
@@ -35,48 +35,25 @@ html,
 
 /* Nickname */
 .nickname {
-  font-size: 16px;
+  font-size: 20px;
   color: #ccc;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-left: 28px;
 }
 
 /* Name */
 .fighter-name {
-  font-size: 36px;
+  font-size: 60px;
   font-weight: bold;
   margin: 0;
 }
 
 /* Title */
 .fighter-title {
-  font-size: 18px;
+  font-size: 20px;
   color: #e53935;
   margin: 10px 0 20px;
+  margin-bottom: 50px;
 }
 
 /* Record section */
-.fighter-record {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  margin-bottom: 40px;
-}
-
-.record-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.record-label {
-  font-size: 13px;
-  color: #ccc;
-  margin-bottom: 5px;
-  letter-spacing: 1px;
-}
-
-.record-value {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-}
