@@ -10,10 +10,7 @@ CREATE TABLE fighter_stats (
     age INT,
     height_cm FLOAT,
     reach_cm FLOAT,
-    country VARCHAR(100),
-    stance VARCHAR(50),
     image_url VARCHAR(255),
-    entry_song_url VARCHAR(255),
 
     wins INT,
     losses INT,
@@ -27,12 +24,12 @@ CREATE TABLE fighter_stats (
     takedown_def FLOAT,
     avg_fight_time_min FLOAT,
 
-    strike INT GENERATED ALWAYS AS (strike_acc*100) VIRTUAL,
-    cardio INT GENERATED ALWAYS AS (100*strike_per_min/7) VIRTUAL,
-    grappling INT GENERATED ALWAYS AS (takedown_acc*100) VIRTUAL,
-    power INT GENERATED ALWAYS AS (a + b) VIRTUAL,
-    speed INT GENERATED ALWAYS AS (a + b) VIRTUAL,
-    defense INT GENERATED ALWAYS AS (a + b) VIRTUAL,
+    strike INT,
+    cardio INT,
+    grappling INT,
+    power INT,
+    speed INT,
+    defense INT,
 
     position_stand FLOAT,
     position_clinch FLOAT,
@@ -47,5 +44,14 @@ CREATE TABLE fighter_stats (
     win_submission INT
 );
 
-// TODO:: 테이블 완성 시키고 쿼리 만들기. 
-CREATE TABLE next_events()
+CREATE TABLE next_events (
+    event_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    fighter1_name VARCHAR(100),
+    fighter2_name VARCHAR(100),
+
+    fighter1_win_prob FLOAT,
+    fighter2_win_prob FLOAT
+);
+
+
