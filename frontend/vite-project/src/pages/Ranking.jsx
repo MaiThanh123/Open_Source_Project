@@ -173,4 +173,8 @@ const Rankings = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default Rankings;
+=======
+export default Rankings;
+>>>>>>> Stashed changes

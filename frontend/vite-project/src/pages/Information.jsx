@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import React from 'react'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import './Information.css';
@@ -142,4 +146,8 @@ const Information = () => {
   );
 }
 
+<<<<<<< Updated upstream
 export default Information
+=======
+export default Information
+>>>>>>> Stashed changes

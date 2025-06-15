@@ -89,4 +89,8 @@ const Compare = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default Compare;
+=======
+export default Compare;
+>>>>>>> Stashed changes

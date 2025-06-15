@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import React from 'react';
 import './Toptier.css';
 import ufc from '../assets/image/home/ufcHome.png';
@@ -66,4 +70,8 @@ const Toptier = () => {
   );
 }
 
+<<<<<<< Updated upstream
 export default Toptier
+=======
+export default Toptier
+>>>>>>> Stashed changes
