@@ -1,16 +1,14 @@
+
 import React from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import HomePage from '../pages/Homepage/HomePage';
 import Ranking from '../pages/Ranking';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-<<<<<<< HEAD
-=======
 import Information from '../pages/Information';
 import Toptier from '../pages/Toptier';
 import Compare from '../pages/Compare';
 
->>>>>>> maivthanh
 const routes = createBrowserRouter([
     //public routes
     {

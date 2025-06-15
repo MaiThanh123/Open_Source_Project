@@ -1,3 +1,131 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.header {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Anton', Tahoma, Haettenschweiler, 'Arial Narrow Bold';
+  --primary-color: #d20a0a;
+}
+
+@media (min-width: 992px) {
+  .header {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header {
+    width: 60%;
+  }
+}
+
+.header__navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__logo {
+  fill: black;
+  width: 80px;
+  cursor: pointer;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  position: relative;
+}
+
+.header__logo-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  order: 2;
+}
+
+.header__logo-wrapper::after {
+  content: '';
+  width: 50%;
+  height: 3px;
+  background-color: var(--primary-color);
+
+  transition: all;
+  transition-duration: 400ms;
+
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header__logo-wrapper:hover::after {
+  width: 80%;
+}
+
+.header__logo:hover {
+  fill: var(--primary-color);
+}
+
+.header__group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__group--left {
+  order: 1;
+}
+
+.header__group--right {
+  order: 3;
+}
+
+.header__item {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 400;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  position: relative;
+}
+
+.header__item::after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  background-color: var(--primary-color);
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all;
+  transition-duration: 400ms;
+}
+
+.header__item:hover {
+  color: var(--primary-color);
+}
+
+.header__item:hover::after {
+  width: 120%;
+}
+
+.header__group:hover ~ .header__logo-wrapper::after {
+  width: 0;
+  transition: width 400ms ease 100ms;
+}
+
