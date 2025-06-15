@@ -1,0 +1,5 @@
+# Bỏ qua các thư mục dependencies
+node_modules/
+
+# Bỏ qua các file môi trường
+.env
