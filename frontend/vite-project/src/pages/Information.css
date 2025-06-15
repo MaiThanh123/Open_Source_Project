@@ -1,0 +1,183 @@
+.fighter-info-wrapper {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+}
+
+/* === TOP SECTION === */
+.fighter-top-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.fighter-image-card {
+  position: relative;
+  width: 250px;
+  height: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fighter-image-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.compare-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+
+.compare-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* === MAIN INFO === */
+.fighter-main-info .nickname {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.fighter-main-info h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.labels {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.division-label {
+  background-color: #f44336;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.champion-label {
+  background-color: #ffca28;
+  color: #222;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.record {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: green;
+  margin-bottom: 1.2rem;
+}
+
+.fighter-facts {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
+}
+
+.fighter-facts div {
+  text-align: center;
+}
+
+/* === RADAR STATS SECTION === */
+.fighter-stats-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stat-note {
+  margin-top: -2rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* === FIGHT HISTORY === */
+.fight-history-section {
+  margin-top: 2rem;
+}
+
+.fight-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+.fighter-facts {
+  font-size: 17px;
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fact-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.result-circle {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.result-circle.win {
+  background-color: green;
+}
+
+.result-circle.loss {
+  background-color: red;
+}
+
+.fight-details {
+  flex: 1;
+  text-align: center;
+}
+
+.fight-details div {
+  margin: 2px 0;
+}
+
+.fight-date {
+  font-size: 0.85rem;
+  color: #777;
+}
