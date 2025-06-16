@@ -28,10 +28,11 @@ const Footer = () => {
       <div className="footer-section">
         <h3 className="footer-title">Connect</h3>
         <div className="social-icons">
-          <a href="#"><img src={fb} alt="Facebook" /></a>
-          <a href="#"><img src={twitter} alt="Twitter" /></a>
-          <a href="#"><img src={ig} alt="Instagram" /></a>
-          <a href="#"><img src={ytb} alt="YouTube" /></a>
+          <a href="https://www.facebook.com/UFCKorea/?brand_redir=176272595900226"><img src={fb} alt="Facebook" /></a>
+          <a href="https://x.com/ufc"><img src={twitter} alt="Twitter" /></a>
+          <a href="https://www.instagram.com/ufc/"><img src={ig} alt="Instagram" /></a>
+          <a href="https://www.youtube.com/@ufc"><img src={ytb} alt="YouTube" /></a>
+
         </div>
         <p className="copyright">© 2025 UFC. All Rights Reserved.</p>
       </div>
