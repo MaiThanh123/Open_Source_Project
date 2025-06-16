@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 .header {
   width: 100%;
   margin-left: auto;
@@ -130,9 +126,4 @@
 .header__group:hover ~ .header__logo-wrapper::after {
   width: 0;
   transition: width 400ms ease 100ms;
-<<<<<<< Updated upstream
 }
-
-=======
-}
->>>>>>> Stashed changes

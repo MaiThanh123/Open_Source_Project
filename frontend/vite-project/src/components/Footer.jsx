@@ -32,10 +32,6 @@ const Footer = () => {
           <a href="https://x.com/ufc"><img src={twitter} alt="Twitter" /></a>
           <a href="https://www.instagram.com/ufc/"><img src={ig} alt="Instagram" /></a>
           <a href="https://www.youtube.com/@ufc"><img src={ytb} alt="YouTube" /></a>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         </div>
         <p className="copyright">© 2025 UFC. All Rights Reserved.</p>
       </div>
