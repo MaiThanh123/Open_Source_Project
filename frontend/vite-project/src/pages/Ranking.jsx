@@ -1,163 +1,188 @@
-import React, { useState } from 'react';
-import jones from '../assets/image/fighter/jones.png';
-import volka from '../assets/image/fighter/volka.png';
-import arrowUp from '../assets/icon/arrowUp.png';
-import arrowDown from '../assets/icon/arrowDown.png';
-import './Ranking.css';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
-const fighterData = {
-  Flyweight: {
-    champion: {
-      name: 'Alexandre Pantoja',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Flyweight Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Bantamweight: {
-    champion: {
-      name: 'Merab Dvalishvili',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Bantamweight Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Featherweight: {
-    champion: {
-      name: 'Alexander Volkanovski',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Featherweight Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Lightweight: {
-    champion: {
-      name: 'Islam Makhachev',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Lightweight Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Welterweight: {
-    champion: {
-      name: 'Jack Della Maddalena',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Welterweight Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Middleweight: {
-    champion: {
-      name: 'Dricus Du Plessis',
-      record: '24-3-0',
-      image: 'https://via.placeholder.com/50',
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Middleweight Contender ${i + 1}`,
-      record: `${21 - i}-${i}-0`,
-    })),
-  },
-  Cruiser: {
-    champion: {
-      name: 'Magomed Ankalaev',
-      record: '29-4-1',
-      image: volka,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Cruiser Contender ${i + 1}`,
-      record: `${22 - i}-${i}-0`,
-    })),
-  },
-  Heavyweight: {
-    champion: {
-      name: 'Jon Jones',
-      record: '27-1-0',
-      image: jones,
-    },
-    contenders: Array.from({ length: 10 }, (_, i) => ({
-      name: `Heavyweight Contender ${i + 1}`,
-      record: `${20 - i}-${i}-0`,
-    })),
-  },
-};
-
-const allWeightClasses = [
-  'Flyweight',
-  'Bantamweight',
-  'Featherweight',
-  'Lightweight',
-  'Welterweight',
-  'Middleweight',
-  'Cruiser',
-  'Heavyweight',
-];
-
-const Rankings = () => {
-  const [selectedClass, setSelectedClass] = useState('Heavyweight');
+const Ranking = () => {
+  const [selectedClass, setSelectedClass] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [fighters, setFighters] = useState([]);
+  const [weightClasses, setWeightClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const data = fighterData[selectedClass];
-  const champion = data?.champion;
-  const contenders = data?.contenders || [];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:3001/api/fighters`);
+        const data = await response.json();
+
+        if (data.length) {
+          const uniqueClasses = [
+            ...new Set(data.map((f) => f.weight_class)),
+          ].sort();
+          setWeightClasses(uniqueClasses);
+
+          // Chỉ set default nếu chưa chọn
+          if (!selectedClass && uniqueClasses.length > 0) {
+            setSelectedClass(uniqueClasses[0]);
+          }
+        }
+      } catch (error) {
+        console.error("Error initializing weight classes:", error);
+      }
+    };
+
+    fetchInitialData();
+  }, []);
+
+  useEffect(() => {
+    const fetchRankings = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `http://127.0.0.1:3001/api/fighters${
+            selectedClass
+              ? `?weight_class=${encodeURIComponent(selectedClass)}`
+              : ""
+          }`
+        );
+        const data = await response.json();
+
+        setFighters(data);
+      } catch (error) {
+        console.error("Error fetching rankings:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (selectedClass) {
+      fetchRankings();
+    }
+  }, [selectedClass]);
+
+  const champion = fighters[0];
+  const contenders = fighters.slice(1);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "0 auto",
+          padding: "20px",
+          position: "relative",
+          minHeight: "100vh",
+        }}
+      >
+        <div
+          style={{
+            background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+            color: "white",
+            padding: "20px",
+            textAlign: "center",
+            fontSize: "24px",
+            fontWeight: "bold",
+            borderRadius: "12px 12px 0 0",
+            marginBottom: "0",
+          }}
+        >
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="rankings-wrapper">
-      <div className="ranking-header">{selectedClass} Division</div>
+    <div className="container mx-auto px-4 py-10">
+      <div className="text-xl font-bold bg-red-600 text-white px-6 py-4 rounded-t-lg">
+        {selectedClass} Division
+      </div>
 
       {champion ? (
-        <div className="champion-card hover-card">
-          <div className="champion-avatar">C</div>
-          <img className="champion-img" src={champion.image} alt={champion.name} />
-          <div className="champion-info">
-            <strong>{champion.name}</strong>
-            <div className="record">Record: {champion.record}</div>
+        <div
+          className="flex items-center bg-gradient-to-r from-gray-200 to-white shadow p-4 rounded-lg mb-4 transition hover:scale-105 hover:bg-gray-100 cursor-pointer"
+          onClick={() => navigate(`/info/${encodeURIComponent(champion.name)}`)}
+        >
+          <div className="w-14 h-14 flex items-center justify-center bg-black text-white rounded-full text-lg font-bold mr-4">
+            C
+          </div>
+          <img
+            src={champion.image_url || "/placeholder.svg"}
+            alt={champion.name}
+            className="w-20 h-20 object-cover rounded-full border-2 border-red-600 mr-6"
+          />
+          <div className="flex flex-col">
+            <strong className="text-xl text-red-700">{champion.name}</strong>
+            <div className="text-gray-600">
+              Record: {champion.wins}-{champion.losses}-{champion.draws}
+            </div>
+            <div className="text-gray-500 text-sm">
+              Age: {champion.age} • Height: {champion.height_cm}cm
+            </div>
           </div>
         </div>
       ) : (
-        <div className="no-data">Chưa có dữ liệu cho hạng cân này.</div>
+        <div className="bg-gray-100 text-gray-500 px-6 py-4 rounded shadow-sm">
+          No data available for this weight class.
+        </div>
       )}
 
       {contenders.length > 0 &&
-        contenders.map((c, i) => (
-          <div key={i} className="fighter-card hover-card">
-            <div className="rank-circle">{i + 1}</div>
-            <div>
-              <strong>{c.name}</strong>
-              <div className="record">Record: {c.record}</div>
+        contenders.map((fighter, i) => (
+          <div
+            key={fighter.name}
+            className="flex items-center bg-white border-b border-gray-100 p-4 rounded hover:scale-105 hover:bg-gray-50 transition cursor-pointer"
+            onClick={() =>
+              navigate(`/info/${encodeURIComponent(fighter.name)}`)
+            }
+          >
+            <div className="w-10 h-10 flex items-center justify-center bg-gray-200 text-gray-800 rounded-full font-bold mr-4">
+              {i + 1}
+            </div>
+            <img
+              src={fighter.image_url || "/placeholder.svg"}
+              alt={fighter.name}
+              className="w-16 h-16 object-cover rounded-full mr-4"
+            />
+            <div className="flex flex-col">
+              <strong className="text-lg hover:text-red-600 transition">
+                {fighter.name}
+              </strong>
+              <div className="text-gray-600 text-sm">
+                Record: {fighter.wins}-{fighter.losses}-{fighter.draws}
+              </div>
+              <div className="text-gray-500 text-sm">
+                Age: {fighter.age} • Height: {fighter.height_cm}cm
+              </div>
             </div>
           </div>
         ))}
 
-      <div className="weight-selector">
-        <div className="selected-weight" onClick={() => setDropdownOpen(!dropdownOpen)}>
+      <div className="fixed top-[280px] right-0 w-40 z-[100]">
+        <div
+          className="bg-red-700 text-white px-4 py-2 rounded-md cursor-pointer text-center font-bold shadow-md flex items-center justify-center"
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+        >
           {selectedClass}
-          <img
-            src={dropdownOpen ? arrowUp : arrowDown}
-            alt="Toggle dropdown"
-            className="arrow-icon"
-          />
-      </div>
+          <span className="ml-2 text-sm">{dropdownOpen ? "▲" : "▼"}</span>
+        </div>
+
         {dropdownOpen && (
-          <div className="dropdown">
-            {allWeightClasses.map((cls) => (
+          <div className="mt-1 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+            <div
+              className="px-4 py-2 text-center hover:bg-gray-100 cursor-pointer font-semibold text-red-600"
+              onClick={() => {
+                setSelectedClass(""); // Clear filter
+                setDropdownOpen(false);
+              }}
+            >
+              All Classes
+            </div>
+            {weightClasses.map((cls) => (
               <div
                 key={cls}
-                className="dropdown-item"
+                className="px-4 py-2 text-center hover:bg-gray-100 cursor-pointer"
                 onClick={() => {
                   setSelectedClass(cls);
                   setDropdownOpen(false);
@@ -173,5 +198,4 @@ const Rankings = () => {
   );
 };
 
-
-export default Rankings;
+export default Ranking;

@@ -27,7 +27,7 @@ const Footer = () => {
 
       <div className="footer-section">
         <h3 className="footer-title">Connect</h3>
-        <div className="social-icons">
+        <div className="social-icons w-full items-center justify-center">
           <a href="https://www.facebook.com/UFCKorea/?brand_redir=176272595900226"><img src={fb} alt="Facebook" /></a>
           <a href="https://x.com/ufc"><img src={twitter} alt="Twitter" /></a>
           <a href="https://www.instagram.com/ufc/"><img src={ig} alt="Instagram" /></a>

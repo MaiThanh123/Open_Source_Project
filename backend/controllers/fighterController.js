@@ -1,5 +1,32 @@
 const db = require('../db');
 
+exports.getFighter = (req, res) => {
+  const { weight_class } = req.query;
+
+  let query = `
+    SELECT *,
+           (wins - losses) AS win_diff
+    FROM fighter_stats
+  `;
+
+  // Nếu có filter weight_class
+  const queryParams = [];
+  if (weight_class) {
+    query += ` WHERE weight_class = ?`;
+    queryParams.push(weight_class);
+  }
+
+  query += ` ORDER BY win_diff DESC LIMIT 10`;
+
+  db.query(query, queryParams, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    res.json(results);
+  });
+};
+
 
 exports.getFighterByName = (req, res) => {
   const { name } = req.params;

@@ -1,150 +1,137 @@
-
-
+import React, { useState } from 'react';
 import fightNight from '../../assets/icon/fight-night.png';
-import ufc316 from '../../assets/icon/ufc-316.svg';
-import background from '../../assets/image/home/background.jpg';
+import fight1future from '../../assets/image/home/future/fight1.png';
+import fight1past from '../../assets/image/home/past/fight1.png';
+import fight2future from '../../assets/image/home/future/fight2.png';
+import fight2past from '../../assets/image/home/past/fight2.png';
+import fight3future from '../../assets/image/home/future/fight3.png';
+import fight3past from '../../assets/image/home/past/fight3.png';
+import fight4future from '../../assets/image/home/future/fight4.png';
+import fight4past from '../../assets/image/home/past/fight4.png';
+import fight5future from '../../assets/image/home/future/fight5.png';
+import fight5past from '../../assets/image/home/past/fight5.png';
 import { Hero } from './Hero';
+import { Link } from 'react-router-dom';
 import './HomePage.css';
 
+const upcomingEvents = [
+  {
+    fighters: [fight1future],
+    title: 'HILL VS ROUNTREE JR.',
+    date: '22.06.25 / 04:00 GMT+9 / Main Card',
+    location: 'Baku Crystal Hall\nBaku, Azerbaijan',
+    buttons: ['HOW TO WATCH', 'TICKET'],
+  },
+  {
+    fighters: [fight2future],
+    title: 'TOPURIA VS OLIVEIRA',
+    date: '29.06.25 / 11:00 GMT+9 / Main Card',
+    location: 'T-Mobile Arena\nLas Vegas, NV, USA',
+    buttons: ['HOW TO WATCH', 'TICKET'],
+  },
+  {
+    fighters: [fight3future],
+    title: 'LEWIS VS TEIXEIRA',
+    date: '13.07.25 / 11:00 GMT+9 / Main Card',
+    location: 'Bridgestone Arena\nNashville, TN United States',
+    buttons: ['HOW TO WATCH', 'TICKET'],
+  },
+  {
+    fighters: [fight4future],
+    title: 'HOLLOWAY VS POIRIER',
+    date: '20.07.25 / 11:00 GMT+9 / Main Card',
+    location: 'Smoothie King Center\nNew Orleans, LA United States',
+    buttons: ['HOW TO WATCH', 'TICKET'],
+  },
+  {
+    fighters: [fight5future],
+    title: 'WHITTAKER VS DE RIDDER',
+    date: '27.07.25 / 04:00 GMT+9 / Main Card',
+    location: 'Etihad Arena\nAbu Dhabi United Arab Emirates',
+    buttons: ['HOW TO WATCH', 'TICKET'],
+  }
+];
+
+const pastEvents = [
+  {
+    fighters: [fight1past],
+    title: 'USMAN VS BUCKLEY',
+    date: '15.06.25 / 11:00 GMT+9 / Main Card',
+    location: 'State Farm Arena\nAtlanta, GA, United States',
+    buttons: ['TO SUMMARIZE', 'WATCH PLAYBACK'],
+  },
+  {
+    fighters: [fight2past],
+    title: 'FIGHTER X VS FIGHTER Y',
+    date: '10.06.25 / 07:00 GMT+9 / Main Card',
+    location: 'O2 Arena\nLondon, UK',
+    buttons: ['TO SUMMARIZE', 'WATCH PLAYBACK'],
+  },
+  {
+    fighters: [fight3past],
+    title: 'GAMROT VS KLEIN',
+    date: '01.06.25 / 10:00 GMT+9 / Main Card',
+    location: 'UFC APEX\nLas Vegas, NV United States',
+    buttons: ['TO SUMMARIZE', 'WATCH PLAYBACK'],
+  },
+  {
+    fighters: [fight4past],
+    title: 'BURNS VS MORALES',
+    date: '18.05.25 / 08:00 GMT+9 / Main Card',
+    location: 'UFC APEX\nLas Vegas, NV United States',
+    buttons: ['TO SUMMARIZE', 'WATCH PLAYBACK'],
+  },
+  {
+    fighters: [fight5past],
+    title: 'MUHAMMAD VS DELLA MADDALENA',
+    date: '11.05.25 / 11:00 GMT+9 / Main Card',
+    location: 'Bell Centre\nMontréal QC Canada',
+    buttons: ['TO SUMMARIZE', 'WATCH PLAYBACK'],
+  }
+];
+
 const HomePage = () => {
+  const [view, setView] = useState('upcoming');
   return (
     <div>
       <Hero />
-      <div className="banner">
-        <div className="banner__heading">
-          <h3 className="banner__pretitle">Just happened</h3>
-          <h1 className="banner__title">
-            Gamrot Vs <br /> Klein
-          </h1>
+      <div className="homepage">
+        <div className="tab-selector">
+            <button
+                className={view === 'upcoming' ? 'active' : ''}
+                onClick={() => setView('upcoming')}
+            >
+            UPCOMING
+            </button>
+            <button
+                className={view === 'past' ? 'active' : ''}
+                onClick={() => setView('past')}
+            >
+            PAST
+            </button>
         </div>
-        <div className="banner__event">
-          <img
-            className="banner__fighter"
-            src="https://ufc.com/images/styles/events_lastnext_athlete/s3/2025-05/BLANCHFIELD_ERIN_L_05-31.png?itok=3u1NPBCT"
-          />
-          <img className="banner__features" src={fightNight} />
-          <img
-            className="banner__fighter"
-            src="https://ufc.com/images/styles/events_lastnext_athlete/s3/2025-05/BARBER_MAYCEE_R_05-31.png?itok=6LWZinvA"
-          />
+
+      {(view === 'upcoming' ? upcomingEvents : pastEvents).map((event, index) => (
+        <div className="event-card" key={index}>
+          <img src={fightNight} alt="UFC Fight Night" className="ufc-logo" />
+        <div className="fighters">
+          <img src={event.fighters[0]} alt="Fighter 1" />
         </div>
-        <div className="banner__separator" />
-        <div className="banner__event">
-          <img
-            className="banner__fighter"
-            src="https://ufc.com/images/styles/events_lastnext_athlete/s3/2025-01/7/DVALISHVILI_MERAB_L_BELT_01-18.png?itok=KcjsvZgk"
-          />
-          <img className="banner__features" src={ufc316} />
-          <img
-            className="banner__fighter"
-            src="https://ufc.com/images/styles/events_lastnext_athlete/s3/2025-01/5/OMALLEY_SEAN_R_08-19.png?itok=s2dVR_0R"
-          />
+        <div className="fight-info">
+          <h2>{event.title}</h2>
+          <p><strong>{event.date}</strong></p>
+          <p>{event.location}</p>
         </div>
-        <div className="banner__heading">
-          <h3 className="banner__pretitle">Up Next</h3>
-          <h1 className="banner__title">
-            Dvalishvili VS
-            <br /> O'Malley 2
-          </h1>
-        </div>
+        <div className="buttons">
+          {event.buttons.map((btn, i) => (
+            <Link to="/watching" key={i} style={{ textDecoration: 'none' }}>
+              <button>{btn}</button>
+            </Link>
+      ))}
       </div>
-
-      <section className="features">
-        <div className="features__card features__card--col">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">Countdown</div>
-            <div className="features__title">
-              UFC 316 Countdown | Merab Dvalishvili
-            </div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--row">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">Embedded</div>
-            <div className="features__title">UFC 316 Embedded | Episode 1</div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--full">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">ESPN MMA</div>
-            <div className="features__title">
-              Merab Dvalishvili Sit Down Interview
-            </div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--row">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">Countdown</div>
-            <div className="features__title">
-              UFC 316 Countdown | Merab Dvalishvili
-            </div>
-          </div>
-        </div>
-      </section>
-      <div
-        className="hero hero--small"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <h2 className="hero__subHeading">UFC 316: Dvalishvili vs O'Malley 2</h2>
-        <h1 className="hero__heading">TWO TITLE FIGHTS ONE STACKED CARD</h1>
-        <span className="hero__subtext">COMING TO NEWARK JUNE 7</span>
-        <div className="hero__group-btn">
-          <button className="uppercase btn--primary">
-            <span>ORDER UFC 316</span>
-          </button>
-          <button className="uppercase btn--primary">
-            <span>GET TICKETS</span>
-          </button>
-        </div>
+  </div>
+))}
       </div>
-      <section className="features">
-        <div className="features__card features__card--row">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">ESPN MMA</div>
-            <div className="features__title">
-              Kayla Harrison Sits Down with Megan Olivi | UFC 316
-            </div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--col">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">ESPN MMA</div>
-            <div className="features__title">
-              Julianna Peña Sit-Down Interview | UFC 316
-            </div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--col">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">Free Fight</div>
-            <div className="features__title">
-              Full Fight | Sean O'Malley vs Aljamain
-            </div>
-          </div>
-        </div>
-
-        <div className="features__card features__card--col">
-          <div className="features__media" />
-          <div className="features__group">
-            <div className="features__category">Free Fight</div>
-            <div className="features__title">
-              Full Fight | Kayla Harrison vs Holly Holm
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

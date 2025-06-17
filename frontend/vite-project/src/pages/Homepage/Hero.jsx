@@ -1,4 +1,6 @@
+
 import './HomePage.css';
+import { Link } from 'react-router-dom';
 import background from '../../assets/image/home/background.jpg';
 
 export const Hero = () => {
@@ -11,10 +13,10 @@ export const Hero = () => {
       </span>
       <div className="hero__group-btn">
         <button className="uppercase btn--primary">
-          <span>Watch now</span>
+          <Link to='https://welcome.ufcfightpass.com/region/row'><span>Watch now</span></Link>
         </button>
-        <button className="uppercase btn--primary">
-          <span>Order UFC 316</span>
+        <button className="uppercase btn--primary" >
+          <Link to='https://blog.naver.com/ufckorea_official'><span>UFC Blog</span></Link>
         </button>
       </div>
     </div>

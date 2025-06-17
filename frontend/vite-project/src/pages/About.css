@@ -1,0 +1,46 @@
+.about-us {
+  font-family: 'Arial', sans-serif;
+  color: #111;
+}
+
+.about-banner {
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.about-banner h1 {
+  font-size: 52px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.about-content {
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.about-content section {
+  margin-bottom: 40px;
+}
+
+.about-content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #d32f2f;
+}
+
+.about-content ul {
+  padding-left: 20px;
+}
+
+.about-content li {
+  margin-bottom: 8px;
+}
